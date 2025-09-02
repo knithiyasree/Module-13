@@ -28,13 +28,44 @@ To write a Python program to evaluate a user-given Prefix expression using a sta
 ### PROGRAM
 
 ```
+OPERATORS = set(['*', '-', '+', '%', '/', '**'])
+
+def evaluate(expression):
+    stack = []
+    for i in reversed(expression):
+        if i not in OPERATORS:
+            stack.append(i)
+        else:
+            a = stack.pop()
+            b = stack.pop()
+            if i == '+':
+                res = int(a) + int(b)
+            elif i == '*':
+                res = int(a) * int(b)
+            elif i == '-':
+                res = int(a) - int(b)
+            elif i == '/':
+                res = int(a) // int(b)
+            elif i == '%':
+                res = int(a) % int(b)
+            elif i == '**':
+                res = int(a) ** int(b)
+            stack.append(res)
+    return stack[0]
+
+test_expression = input()
+print("Prefix Expression :", test_expression)
+print("Evaluation result :", evaluate(test_expression))
 
 
 ```
 
 
 ### OUTPUT
+<img width="818" height="198" alt="image" src="https://github.com/user-attachments/assets/ef01dd80-991b-41df-8ff1-d3a9f3043eaa" />
 
 
 
-### RESULT
+
+### RESULT:
+Thus a Python program to evaluate a user-given Prefix expression using a stack has been executed successfully.
